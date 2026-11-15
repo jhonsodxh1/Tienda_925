@@ -317,7 +317,7 @@ label.f input,label.f select,label.f textarea{border:1px solid var(--line);backg
 <footer id="contacto">
   <div class="wrap">
     <div>
-      <div class="logo">Verdemar <span class="mark">925</span></div>
+      <div class="logo">925 <span class="mark">925</span></div>
       Joyería en plata de ley hecha en Colombia.<br>WhatsApp: <span class="waNum"></span><br>Lunes a sábado, 9:00 a. m. – 7:00 p. m.
     </div>
     <div><b>Compra segura</b>Pagas solo después de confirmar tu pedido. Precios en pesos colombianos, IVA incluido.
@@ -599,7 +599,7 @@ $("#coForm").addEventListener("submit",e=>{
   $("#coErr").textContent="";
   const t=totals();
   const lines=cart.map(i=>{const p=PRODUCTS.find(x=>x.id===i.id);return `• ${i.qty} x ${p.name} (${p.id}, ${p.optLabel?p.optLabel+" "+i.size:i.size}) — ${cop(p.price*i.qty)}`}).join("\n");
-  const msg=`Hola Verdemar, quiero hacer este pedido:\n\n${lines}\n\nSubtotal: ${cop(t.sub)}\nEnvío: ${t.ship?cop(t.ship):"Gratis"}\nTotal: ${cop(t.total)}\n\nNombre: ${v("#coName")}\nCelular: ${v("#coPhone")}\nCiudad: ${v("#coCity")}\nDirección: ${v("#coAddr")}\nPago: ${$("#coPay").value}`+(v("#coNote")?`\nNota: ${v("#coNote")}`:"");
+  const msg=`Hola 925, quiero hacer este pedido:\n\n${lines}\n\nSubtotal: ${cop(t.sub)}\nEnvío: ${t.ship?cop(t.ship):"Gratis"}\nTotal: ${cop(t.total)}\n\nNombre: ${v("#coName")}\nCelular: ${v("#coPhone")}\nCiudad: ${v("#coCity")}\nDirección: ${v("#coAddr")}\nPago: ${$("#coPay").value}`+(v("#coNote")?`\nNota: ${v("#coNote")}`:"");
   $("#orderText").textContent=msg;
   $("#waLink").href=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
   $("#coResult").hidden=false;
