@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verdemar Plata 925</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: barra limpia, hero a dos columnas con pieza en plata, franja de confianza, catálogo en grilla, sección "plata 925", FAQ, carrito lateral */
+:root{
+  --bg:#f7f7f6;
+  --surface:#ffffff;
+  --ink:#16181d;
+  --muted:#636873;
+  --line:#e4e5e8;
+  --silver:#eef0f3;
+  --accent:#1f3352;
+  --accent-ink:#ffffff;
+  --ok:#2c6e4f;
+  --danger:#a33a2c;
+  --display:"Instrument Serif", "Times New Roman", serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --r:10px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1114; --surface:#171a1f; --ink:#eceef2; --muted:#9aa1ad; --line:#272b33; --silver:#1e2229;
+    --accent:#a9c1e6; --accent-ink:#0f1114; --ok:#6fc29a; --danger:#e58a7c; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1114; --surface:#171a1f; --ink:#eceef2; --muted:#9aa1ad; --line:#272b33; --silver:#1e2229;
+  --accent:#a9c1e6; --accent-ink:#0f1114; --ok:#6fc29a; --danger:#e58a7c; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.05;letter-spacing:-.01em}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+.notice{background:var(--ink);color:var(--bg);font-size:13px;text-align:center;padding:8px 16px}
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.logo{font-family:var(--display);font-size:30px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:10px}
+.logo .mark{font-family:var(--body);font-size:10px;font-weight:700;letter-spacing:.14em;border:1px solid var(--ink);border-radius:4px;padding:2px 6px}
+nav.links{display:flex;gap:26px;font-size:14px;font-weight:500}
+nav.links a{color:var(--muted);text-decoration:none}
+nav.links a:hover{color:var(--ink)}
+.cart-btn{display:flex;align-items:center;gap:10px;border:0;background:var(--ink);color:var(--bg);border-radius:999px;padding:9px 16px;font-weight:600;font-size:14px}
+.cart-btn .count{background:var(--bg);color:var(--ink);border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-size:12px;font-variant-numeric:tabular-nums}
+@media (max-width:760px){nav.links{display:none}}
+
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:56px 0 40px}
+.hero h1{font-size:clamp(46px,6.4vw,84px);margin:14px 0 18px}
+.hero h1 em{font-style:italic;color:var(--muted)}
+.hero p{color:var(--muted);max-width:48ch;margin:0 0 28px;font-size:17px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{border:0;border-radius:999px;padding:14px 24px;font-weight:600;font-size:15px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary{background:var(--ink);color:var(--bg)}
+.btn-primary:hover{background:var(--accent);color:var(--accent-ink)}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink)}
+.hero-stats{display:flex;gap:28px;margin-top:34px;padding-top:22px;border-top:1px solid var(--line);flex-wrap:wrap}
+.hero-stats div{font-size:13px;color:var(--muted)}
+.hero-stats b{display:block;font-family:var(--display);font-size:30px;font-weight:400;color:var(--ink);line-height:1.1}
+.hero-art{background:var(--silver);border-radius:var(--r);aspect-ratio:4/5;position:relative;overflow:hidden}
+.hero-art canvas{width:100%;height:100%;display:block}
+.stamp{position:absolute;right:18px;top:18px;width:84px;height:84px;border-radius:50%;border:1px solid var(--ink);display:grid;place-items:center;text-align:center;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;background:color-mix(in srgb,var(--surface) 70%,transparent)}
+.stamp b{display:block;font-family:var(--display);font-size:26px;letter-spacing:0;font-weight:400;line-height:1}
+@media (max-width:860px){.hero{grid-template-columns:1fr;gap:28px;padding-top:28px}.hero-art{aspect-ratio:4/3;order:-1}}
+
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:10px 0 64px}
+.trust div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;gap:12px;align-items:flex-start}
+.trust svg{flex:none;width:26px;height:26px;stroke:var(--ink)}
+.trust b{display:block;font-size:14px}
+.trust span{font-size:13px;color:var(--muted)}
+@media (max-width:900px){.trust{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.trust{grid-template-columns:1fr}}
+
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.section-head h2{font-size:clamp(36px,4.6vw,54px)}
+.section-head p{color:var(--muted);margin:6px 0 0;font-size:14px}
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:26px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:8px 16px;font-size:14px;font-weight:500}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.filters .spacer{flex:1}
+.filters select{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 14px;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px 22px}
+.card{display:flex;flex-direction:column;gap:12px}
+.card .pic{aspect-ratio:4/5;background:var(--silver);border:0;padding:0;width:100%;border-radius:var(--r);position:relative;overflow:hidden}
+.card .pic svg{width:100%;height:100%;display:block;transition:transform .4s ease}
+.card .pic:hover svg{transform:scale(1.04)}
+.badge{position:absolute;top:12px;left:12px;background:var(--surface);color:var(--ink);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:999px}
+.quick{position:absolute;left:12px;right:12px;bottom:12px;background:var(--ink);color:var(--bg);border-radius:999px;padding:10px;font-size:13px;font-weight:600;text-align:center;opacity:0;transform:translateY(6px);transition:.25s}
+.card .pic:hover .quick,.card .pic:focus-visible .quick{opacity:1;transform:none}
+@media (hover:none){.quick{opacity:1;transform:none}}
+.card .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.card h3{font-family:var(--body);font-size:16px;font-weight:600;letter-spacing:0}
+.card .meta{font-size:13px;color:var(--muted)}
+.price{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.empty{grid-column:1/-1;padding:40px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:var(--r)}
+
+.band{background:var(--surface);border:1px solid var(--line);border-radius:calc(var(--r)*1.6);padding:40px;margin:80px 0;display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:center}
+.band h2{font-size:clamp(34px,4vw,48px);margin:10px 0 14px}
+.band p{color:var(--muted);margin:0 0 12px}
+.steps{display:grid;gap:14px;counter-reset:s;margin:0;padding:0;list-style:none}
+.steps li{display:grid;grid-template-columns:40px 1fr;gap:14px;padding:16px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg)}
+.steps li::before{counter-increment:s;content:counter(s);width:40px;height:40px;border-radius:50%;border:1px solid var(--ink);display:grid;place-items:center;font-family:var(--display);font-size:20px}
+.steps b{display:block;font-size:15px}
+.steps span{font-size:14px;color:var(--muted)}
+@media (max-width:860px){.band{grid-template-columns:1fr;padding:24px}}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:80px;align-items:start}
+.two h2{font-size:clamp(32px,3.6vw,44px);margin-bottom:16px}
+details{border-bottom:1px solid var(--line);padding:16px 0}
+details summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";font-weight:400;font-size:20px;line-height:1;color:var(--muted)}
+details[open] summary::after{content:"−"}
+details p{color:var(--muted);margin:10px 0 0;font-size:15px;max-width:60ch}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums;background:var(--surface)}
+th,td{border-bottom:1px solid var(--line);padding:11px 14px;text-align:left}
+tr:last-child td{border-bottom:0}
+th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+.small{font-size:13px;color:var(--muted)}
+@media (max-width:860px){.two{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding:40px 0 48px;color:var(--muted);font-size:14px}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:28px}
+footer b{color:var(--ink);display:block;margin-bottom:6px}
+footer .logo{font-size:26px;margin-bottom:8px}
+.pays{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.pays span{border:1px solid var(--line);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:600;color:var(--ink);background:var(--surface)}
+@media (max-width:760px){footer .wrap{grid-template-columns:1fr}}
+
+.scrim{position:fixed;inset:0;background:rgba(12,14,18,.45);z-index:40;display:none}
+.scrim.open{display:block}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(430px,100%);background:var(--surface);z-index:50;transform:translateX(100%);transition:transform .28s ease;display:flex;flex-direction:column;border-left:1px solid var(--line)}
+.drawer.open{transform:none}
+.drawer header{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--line)}
+.drawer header h2{font-size:30px}
+.x{border:0;background:transparent;font-size:26px;line-height:1;padding:4px 8px;color:var(--muted)}
+.drawer .items{flex:1;overflow:auto;padding:6px 22px}
+.line{display:grid;grid-template-columns:70px 1fr auto;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center}
+.line .thumb{width:70px;height:84px;background:var(--silver);border-radius:8px;overflow:hidden}
+.line .thumb svg{width:100%;height:100%}
+.line .name{font-weight:600;font-size:14px}
+.line .opt{font-size:12px;color:var(--muted)}
+.qty{display:flex;align-items:center;gap:6px;margin-top:8px}
+.qty button{width:28px;height:28px;border:1px solid var(--line);background:transparent;border-radius:50%;font-size:14px;line-height:1}
+.qty span{min-width:18px;text-align:center;font-variant-numeric:tabular-nums;font-size:14px}
+.remove{border:0;background:transparent;color:var(--muted);text-decoration:underline;font-size:12px;padding:0;margin-left:8px}
+.drawer footer{border-top:1px solid var(--line);padding:18px 22px 22px;display:flex;flex-direction:column;gap:9px;color:var(--ink);font-size:inherit}
+.sum{display:flex;justify-content:space-between;font-size:14px;font-variant-numeric:tabular-nums}
+.sum.total{font-size:18px;font-weight:700;padding-top:8px;border-top:1px solid var(--line)}
+.progress{height:4px;background:var(--line);border-radius:4px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--ok);transition:width .3s}
+.hint{font-size:12px;color:var(--muted)}
+.secure{display:flex;align-items:center;gap:6px;justify-content:center;font-size:12px;color:var(--muted)}
+.btn-block{width:100%}
+
+.modal{position:fixed;inset:0;z-index:60;display:none;place-items:center;padding:16px}
+.modal.open{display:grid}
+.panel{background:var(--surface);border-radius:calc(var(--r)*1.4);max-width:900px;width:100%;max-height:92vh;overflow:auto;display:grid;grid-template-columns:1fr 1fr;position:relative;border:1px solid var(--line)}
+.panel .pic{background:var(--silver);min-height:340px}
+.panel .pic svg{width:100%;height:100%;display:block}
+.panel .info{padding:30px;display:flex;flex-direction:column;gap:14px}
+.panel h3{font-size:38px}
+.panel .x{position:absolute;top:10px;right:10px;z-index:2}
+.specs{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px;margin:0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.specs dt{color:var(--muted)}
+.specs dd{margin:0}
+.size-pick{display:flex;flex-wrap:wrap;gap:8px}
+.size-pick button{border:1px solid var(--line);background:transparent;border-radius:8px;min-width:46px;padding:8px 10px;font-size:14px;font-variant-numeric:tabular-nums}
+.thumbs{position:absolute;left:12px;bottom:12px;display:flex;gap:8px}
+.thumbs button{width:56px;height:56px;padding:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#f7f7f7}
+.thumbs button[aria-pressed="true"]{border:2px solid var(--ink)}
+.size-pick button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg);font-weight:600}
+.perks{display:grid;gap:6px;font-size:13px;color:var(--muted);margin:0;padding:0;list-style:none}
+.perks li::before{content:"✓";color:var(--ok);font-weight:700;margin-right:8px}
+label.f{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--muted);font-weight:500}
+label.f input,label.f select,label.f textarea{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:11px 12px;font-size:15px;color:var(--ink)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-grid .full{grid-column:1/-1}
+.err{color:var(--danger);font-size:13px;min-height:1em}
+.order-text{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px;font-size:13px;max-height:200px;overflow:auto}
+@media (max-width:720px){.panel{grid-template-columns:1fr}.panel .pic{min-height:240px;aspect-ratio:1/1}.form-grid{grid-template-columns:1fr}}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:11px 20px;border-radius:999px;font-size:14px;opacity:0;transition:.2s;z-index:70;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="notice">Envío gratis a toda Colombia desde $150.000 · Garantía de por vida en el material</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio">Verdemar <span class="mark">925</span></a>
+    <nav class="links" aria-label="Secciones">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#plata">Plata 925</a>
+      <a href="#ayuda">Envíos y garantía</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button class="cart-btn" id="openCart" aria-label="Abrir carrito">Carrito <span class="count" id="cartCount">0</span></button>
+  </div>
+</header>
+
+<main class="wrap" id="inicio">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Joyería en plata 925 · Colombia</div>
+      <h1>Plata que se usa todos los días <em>y dura años</em></h1>
+      <p>Manillas, brazaletes, charms, collares, aretes y anillos en plata de ley 925, hechos para no oscurecerse con el uso diario. Cada pieza lleva el sello 925 y llega en estuche con su certificado.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#catalogo">Ver colección</a>
+        <a class="btn btn-ghost" href="#plata">Cómo saber si es plata real</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>92,5%</b>plata pura en cada pieza</div>
+        <div><b>30 días</b>para cambios</div>
+        <div><b>2–4 días</b>envío nacional</div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="stamp"><div><b>925</b>Sterling</div></div>
+    </div>
+  </section>
+
+  <section class="trust" aria-label="Por qué comprar con nosotros">
+    <div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg><p style="margin:0"><b>Plata 925 certificada</b><span>Sello grabado y certificado en cada pedido</span></p></div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="7" width="13" height="10" rx="1"/><path d="M16 10h3l2 3v4h-5"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg><p style="margin:0"><b>Envío con guía</b><span>Servientrega o Interrapidísimo, con seguimiento</span></p></div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 12a8 8 0 0114-5.3L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 01-14 5.3L4 15"/><path d="M4 20v-5h5"/></svg><p style="margin:0"><b>Cambios en 30 días</b><span>Talla o modelo, sin preguntas</span></p></div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg><p style="margin:0"><b>Pago seguro</b><span>Pagas al confirmar tu pedido por WhatsApp</span></p></div>
+  </section>
+
+  <section id="catalogo">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Colección</div>
+        <h2>Todas las piezas</h2>
+        <p id="resultCount"></p>
+      </div>
+    </div>
+    <div class="filters" role="group" aria-label="Filtros">
+      <div id="catChips" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+      <span class="spacer"></span>
+      <select id="sort" aria-label="Ordenar">
+        <option value="dest">Destacados</option>
+        <option value="asc">Precio: menor a mayor</option>
+        <option value="desc">Precio: mayor a menor</option>
+      </select>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="band" id="plata">
+    <div>
+      <div class="eyebrow">Plata 925</div>
+      <h2>Cómo saber que tu joya es plata real</h2>
+      <p>La plata 925 tiene 92,5% de plata pura y 7,5% de cobre, que la hace resistente. No es baño ni enchape: es el mismo material por dentro y por fuera.</p>
+      <p>Puedes comprobarlo tú mismo con estas tres pruebas.</p>
+    </div>
+    <ol class="steps">
+      <li><div><b>Busca el sello</b><span>Toda pieza lleva grabado "925" o "S925" en el broche o por dentro.</span></div></li>
+      <li><div><b>Prueba del imán</b><span>La plata no es magnética. Si un imán la atrae, no es plata de ley.</span></div></li>
+      <li><div><b>Frótala con un paño blanco</b><span>La plata deja una marca gris oscura en el paño. Es normal y demuestra que es auténtica.</span></div></li>
+    </ol>
+  </section>
+
+  <section class="two" id="ayuda">
+    <div>
+      <div class="eyebrow">Ayuda</div>
+      <h2>Preguntas frecuentes</h2>
+      <details open><summary>¿Cuánto se demora el envío?</summary><p>Despachamos en 24 horas hábiles. Llega en 1–2 días a Bogotá y en 2–4 días al resto del país. Te enviamos el número de guía por WhatsApp.</p></details>
+      <details><summary>¿La plata se pone negra?</summary><p>La plata 925 puede oscurecerse con perfume, cloro o sudor. Se recupera con un paño para plata o agua tibia con bicarbonato. Si lo necesitas, te la limpiamos gratis.</p></details>
+      <details><summary>¿Qué pasa si no me queda la talla?</summary><p>Tienes 30 días para cambiarla por otra talla o modelo. Solo pagas el envío de regreso.</p></details>
+      <details><summary>¿Cómo pago?</summary><p>Por Nequi, Daviplata, transferencia Bancolombia o contraentrega en Bogotá. Primero confirmamos disponibilidad y luego te enviamos los datos de pago.</p></details>
+      <details><summary>¿Hacen grabados?</summary><p>Sí, en placas y anillos lisos. Escríbelo en la nota del pedido; el grabado tarda 1 día adicional.</p></details>
+    </div>
+    <div>
+      <div class="eyebrow">Tallas</div>
+      <h2>Guía de medidas</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Pieza</th><th>Medida</th><th>Para quién</th></tr></thead>
+          <tbody>
+            <tr><td>Manilla</td><td>16 cm</td><td>Muñeca delgada</td></tr>
+            <tr><td>Manilla</td><td>18 cm</td><td>Estándar</td></tr>
+            <tr><td>Manilla</td><td>20 cm</td><td>Muñeca ancha u hombre</td></tr>
+            <tr><td>Brazalete</td><td>S · M · L</td><td>Contorno de 16, 18 y 20 cm</td></tr>
+            <tr><td>Collar</td><td>40 cm</td><td>Pegado al cuello</td></tr>
+            <tr><td>Collar</td><td>45 cm</td><td>Sobre la clavícula</td></tr>
+            <tr><td>Collar</td><td>50 cm</td><td>Debajo de la clavícula</td></tr>
+            <tr><td>Anillo</td><td>Talla 6 · 16,5 mm</td><td>Diámetro interno</td></tr>
+            <tr><td>Anillo</td><td>Talla 8 · 18,1 mm</td><td>Diámetro interno</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small">Para la manilla, mide tu muñeca con un hilo y súmale 1,5 cm.</p>
+    </div>
+  </section>
+</main>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div>
+      <div class="logo">Verdemar <span class="mark">925</span></div>
+      Joyería en plata de ley hecha en Colombia.<br>WhatsApp: <span class="waNum"></span><br>Lunes a sábado, 9:00 a. m. – 7:00 p. m.
+    </div>
+    <div><b>Compra segura</b>Pagas solo después de confirmar tu pedido. Precios en pesos colombianos, IVA incluido.
+      <div class="pays"><span>Nequi</span><span>Daviplata</span><span>Bancolombia</span><span>Contraentrega</span></div>
+    </div>
+    <div><b>Políticas</b>Cambios en 30 días<br>Garantía de por vida en el material<br>Limpieza gratis de tus piezas</div>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Carrito" aria-hidden="true">
+  <header><h2>Tu carrito</h2><button class="x" id="closeCart" aria-label="Cerrar carrito">×</button></header>
+  <div class="items" id="items"></div>
+  <footer>
+    <div class="sum"><span>Subtotal</span><span id="subtotal">$0</span></div>
+    <div class="sum"><span>Envío</span><span id="shipping">—</span></div>
+    <div class="progress" aria-hidden="true"><i id="progBar" style="width:0"></i></div>
+    <div class="hint" id="shipHint"></div>
+    <div class="sum total"><span>Total</span><span id="total">$0</span></div>
+    <button class="btn btn-primary btn-block" id="checkoutBtn">Finalizar pedido</button>
+    <div class="secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Pagas solo cuando confirmemos tu pedido</div>
+  </footer>
+</aside>
+
+<div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+  <div class="panel">
+    <button class="x" data-close aria-label="Cerrar">×</button>
+    <div class="pic" id="pmPic"></div>
+    <div class="info">
+      <div class="eyebrow" id="pmCat"></div>
+      <h3 id="pmTitle"></h3>
+      <div class="price" id="pmPrice" style="font-size:22px"></div>
+      <p id="pmDesc" style="color:var(--muted);margin:0"></p>
+      <dl class="specs" id="pmSpecs"></dl>
+      <div id="pmSizeWrap">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:8px;font-weight:500" id="pmSizeLabel">Medida</div>
+        <div class="size-pick" id="pmSizes"></div>
+      </div>
+      <div class="err" id="pmErr"></div>
+      <button class="btn btn-primary btn-block" id="pmAdd">Agregar al carrito</button>
+      <ul class="perks"><li>Plata 925 con sello y certificado</li><li>Estuche de regalo incluido</li><li>Cambios gratis de talla en 30 días</li></ul>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="coTitle">
+  <div class="panel" style="grid-template-columns:1fr;max-width:580px">
+    <button class="x" data-close aria-label="Cerrar">×</button>
+    <form class="info" id="coForm" novalidate>
+      <h3 id="coTitle" style="font-size:34px">Datos de envío</h3>
+      <p style="color:var(--muted);margin:0;font-size:14px">Tu pedido se envía por WhatsApp. Confirmamos disponibilidad y te enviamos los datos de pago. No cobramos nada antes de confirmar.</p>
+      <div class="form-grid">
+        <label class="f full" for="coName">Nombre completo<input id="coName" required autocomplete="name"></label>
+        <label class="f" for="coPhone">Celular<input id="coPhone" required inputmode="tel" autocomplete="tel" placeholder="300 123 4567"></label>
+        <label class="f" for="coCity">Ciudad<input id="coCity" required autocomplete="address-level2" placeholder="Bogotá"></label>
+        <label class="f full" for="coAddr">Dirección<input id="coAddr" required autocomplete="street-address" placeholder="Calle 00 # 00-00, apto"></label>
+        <label class="f full" for="coPay">Medio de pago
+          <select id="coPay"><option>Nequi</option><option>Daviplata</option><option>Transferencia Bancolombia</option><option>Contraentrega (solo Bogotá)</option></select>
+        </label>
+        <label class="f full" for="coNote">Nota (opcional)<textarea id="coNote" rows="2" placeholder="Es para regalo, grabado, etc."></textarea></label>
+      </div>
+      <div class="err" id="coErr"></div>
+      <button class="btn btn-primary btn-block" type="submit">Preparar pedido</button>
+      <div id="coResult" hidden>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:6px">Este es el mensaje que vas a enviar:</div>
+        <div class="order-text" id="orderText"></div>
+        <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+          <a class="btn btn-primary" id="waLink" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+          <button class="btn btn-ghost" type="button" id="copyOrder">Copiar mensaje</button>
+        </div>
+        <p class="hint" style="margin-top:8px">Si WhatsApp no abre, copia el mensaje y envíalo al <span class="waNum"></span>.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ===== Configuración de la tienda: cambia aquí tu número y productos ===== */
+const WHATSAPP = "573000000000"; // número de ejemplo: reemplázalo por el tuyo (57 + celular)
+const ENVIO = 12000, ENVIO_GRATIS_DESDE = 150000;
+
+const PRODUCTS = [
+  {id:"MA01",name:"Manilla Cadena Rolo",cat:"Manillas",type:"chain",price:89000,weight:"3,2 g",badge:"Más vendida",desc:"Cadena rolo de 3 mm, el clásico que combina con todo. Cierre de langosta reforzado."},
+  {id:"MA02",name:"Manilla Cubana",cat:"Manillas",type:"cuban",price:149000,weight:"8,5 g",desc:"Eslabón cubano de 5 mm con brillo espejo. Unisex."},
+  {id:"MA03",name:"Manilla Corazón",cat:"Manillas",type:"heart",price:99000,weight:"2,8 g",desc:"Cadena fina con dije de corazón plano. Ideal para grabar una inicial."},
+  {id:"MA04",name:"Manilla Placa",cat:"Manillas",type:"bar",price:109000,weight:"4,1 g",badge:"Grabable",desc:"Placa rectangular sobre cadena veneciana. Graba un nombre o una fecha."},
+  {id:"BR01",name:"Esclava Lisa",cat:"Brazaletes",type:"bangle",price:129000,weight:"7,0 g",desc:"Brazalete abierto de 4 mm, ajustable a la muñeca."},
+  {id:"BR02",name:"Brazalete Torzal",cat:"Brazaletes",type:"twist",price:169000,weight:"10,5 g",badge:"Nuevo",desc:"Brazalete rígido con hilo de plata entorchado. Cierre de bisagra con seguro."},
+  {id:"BR03",name:"Brazalete Ancho Martillado",cat:"Brazaletes",type:"cuff",price:219000,weight:"16,0 g",desc:"Brazalete abierto de 12 mm con textura martillada a mano. Ajustable."},
+  {id:"BR04",name:"Brazalete Nudo",cat:"Brazaletes",type:"knot",price:149000,weight:"8,2 g",desc:"Brazalete rígido con nudo central pulido. Abierto, se adapta a la muñeca."},
+  {id:"BR05",name:"Brazalete Circones",cat:"Brazaletes",type:"zircon",price:189000,weight:"9,4 g",desc:"Brazalete delgado con línea de circones al frente y cierre de bisagra."},
+  {id:"CO01",name:"Collar Punto de Luz",cat:"Collares",type:"pendant",price:119000,weight:"2,2 g",badge:"Nuevo",desc:"Circón de 5 mm engastado en plata sobre cadena rolo con extensión."},
+  {id:"CO02",name:"Collar Inicial",cat:"Collares",type:"letter",price:115000,weight:"2,6 g",desc:"Letra en plata pulida. Indica tu inicial en la nota del pedido."},
+  {id:"CO03",name:"Cadena Veneciana",cat:"Collares",type:"necklace",price:95000,weight:"3,0 g",desc:"Cadena veneciana de 1,5 mm. Perfecta sola o con tu dije favorito."},
+  {id:"AR01",name:"Argollas Clásicas",cat:"Aretes",type:"hoops",price:79000,weight:"2,4 g",badge:"Más vendida",desc:"Candongas de 15 mm con cierre de bisagra. Livianas para uso diario."},
+  {id:"AR02",name:"Topos Brillante",cat:"Aretes",type:"studs",price:59000,weight:"1,0 g",desc:"Topos con circón de 4 mm y mariposa de seguridad. Antialérgicos."},
+  {id:"AR03",name:"Aretes Perla",cat:"Aretes",type:"pearl",price:89000,weight:"1,6 g",desc:"Perla cultivada de 7 mm sobre poste de plata 925."},
+  {id:"AN01",name:"Anillo Liso",cat:"Anillos",type:"ring",price:69000,weight:"2,9 g",desc:"Argolla de 3 mm con acabado espejo. Grabable por dentro."},
+  {id:"AN02",name:"Anillo Solitario",cat:"Anillos",type:"solitaire",price:99000,weight:"2,3 g",desc:"Banda delgada con circón central de 5 mm en garras."},
+  {id:"TO01",name:"Tobillera Bolitas",cat:"Tobilleras",type:"anklet",price:85000,weight:"3,4 g",desc:"Cadena con bolitas de plata. Largo de 23 cm con extensión de 3 cm."},
+  {id:"MA06",name:"Manilla para Charms",cat:"Manillas",type:"charmbase",price:139000,weight:"9,0 g",badge:"Arma la tuya",desc:"Cadena serpiente con cierre de barril, compatible con todos nuestros charms. Agrégale los que quieras."},
+  {id:"CH01",name:"Charm Corazón",cat:"Charms",type:"c-heart",price:49000,weight:"1,4 g",badge:"Nuevo",desc:"Corazón pulido con argolla de enganche. Compatible con manillas y collares."},
+  {id:"CH02",name:"Charm Estrella",cat:"Charms",type:"c-star",price:49000,weight:"1,3 g",desc:"Estrella de cinco puntas en plata 925 con acabado brillante."},
+  {id:"CH03",name:"Charm Luna",cat:"Charms",type:"c-moon",price:49000,weight:"1,2 g",desc:"Media luna con circón pequeño. Para usar sola o combinada con la estrella."},
+  {id:"CH04",name:"Charm Trébol",cat:"Charms",type:"c-clover",price:55000,weight:"1,5 g",desc:"Trébol de cuatro hojas, el amuleto de la buena suerte."},
+  {id:"CH05",name:"Charm Inicial",cat:"Charms",type:"c-letter",price:52000,weight:"1,6 g",badge:"A – Z",desc:"Letra en plata 925 pulida con agujero pasante para manilla de charms. Elige tu letra abajo.",
+    options:"ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split(""),optLabel:"Letra"},
+  {id:"CH06",name:"Charm Perezoso",cat:"Charms",type:"c-heart",price:65000,weight:"2,9 g",badge:"Nuevo",desc:"Perezoso colgado de su rama, con detalles en esmalte café. Se engancha en la manilla de charms."},
+  {id:"CH07",name:"Charm Sol Dos Tonos",cat:"Charms",type:"c-star",price:79000,weight:"2,4 g",mat:"Plata 925 y baño de oro",desc:"Sol colgante con rayos en plata y centro con baño de oro, circón al centro y argolla entorchada."},
+];
+/* Fotos: guarda tus fotos en la carpeta img/ con el código del producto (ej. img/MA01.jpg)
+   y pon su nombre en PHOTOS. Si una pieza no tiene foto, se muestra la ilustración. */
+const PHOTOS = { // un producto puede tener varias fotos: la primera es la principal
+  CH05:["img/CH05-J.webp","img/CH05-F.webp"],
+  CH06:["img/CH06.webp"],
+  CH07:["img/CH07.webp"],
+};
+// Fotos de estudio del resto del catálogo (img/CODIGO.webp)
+["MA01","MA02","MA03","MA04","MA06","BR01","BR02","BR03","BR04","BR05","CO01","CO02","CO03","AR01","AR02","AR03","AN01","AN02","TO01","CH01","CH02","CH03","CH04"].forEach(id=>{ if(!PHOTOS[id]) PHOTOS[id]=["img/"+id+".webp"]; });
+const photosOf = p => [].concat(PHOTOS[p.id]||[]);
+const photoImg = (src,alt) => `<img src="${src}" alt="${alt}" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block;background:#f7f7f7">`;
+const SIZES = {Manillas:["16 cm","18 cm","20 cm"], Brazaletes:["S · 16 cm","M · 18 cm","L · 20 cm"], Collares:["40 cm","45 cm","50 cm"], Anillos:["5","6","7","8","9","10"], Tobilleras:["23 cm","26 cm"]};
+
+const $ = s => document.querySelector(s);
+const cop = n => "$" + n.toLocaleString("es-CO");
+const waPretty = "+" + WHATSAPP.slice(0,2) + " " + WHATSAPP.slice(2,5) + " " + WHATSAPP.slice(5,8) + " " + WHATSAPP.slice(8);
+document.querySelectorAll(".waNum").forEach(e=>e.textContent=waPretty);
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),1800)}
+
+/* ===== Ilustraciones en plata ===== */
+let uid=0;
+function art(p){
+  if(photosOf(p).length) return photoImg(photosOf(p)[0],p.name);
+  const id="g"+(uid++);
+  const defs=`<defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f5f6f8"/><stop offset=".45" stop-color="#a9afb8"/><stop offset=".7" stop-color="#e3e6ea"/><stop offset="1" stop-color="#7d838d"/></linearGradient></defs>`;
+  const S=`url(#${id})`, edge="rgba(40,45,55,.35)";
+  const gem=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#fbfdff" stroke="${edge}" stroke-width=".8"/><path d="M${x-r*.6} ${y} L${x} ${y-r*.6} L${x+r*.6} ${y} L${x} ${y+r*.6}Z" fill="none" stroke="#c7d3e2" stroke-width=".8"/>`;
+  const arc=(n,fn)=>{let o="";for(let i=0;i<n;i++){const a=Math.PI*(.12+.76*i/(n-1));o+=fn(100-Math.cos(a)*62,70+Math.sin(a)*62,a)}return o};
+  let g="";
+  switch(p.type){
+    case "chain": g=arc(15,(x,y,a)=>`<ellipse cx="${x}" cy="${y}" rx="5" ry="3.4" fill="none" stroke="${S}" stroke-width="2.6" transform="rotate(${a*57.3+90} ${x} ${y})"/>`);break;
+    case "cuban": g=arc(11,(x,y,a)=>`<rect x="${x-9}" y="${y-6}" width="18" height="12" rx="6" fill="none" stroke="${S}" stroke-width="4.5" transform="rotate(${a*57.3+90} ${x} ${y})"/>`);break;
+    case "heart": g=arc(20,(x,y)=>`<circle cx="${x}" cy="${y}" r="1.6" fill="${S}"/>`)+`<path d="M100 150 C78 134 80 116 92 116 C97 116 100 121 100 121 C100 121 103 116 108 116 C120 116 122 134 100 150Z" fill="${S}" stroke="${edge}" stroke-width=".8"/>`;break;
+    case "bar": g=arc(20,(x,y)=>`<circle cx="${x}" cy="${y}" r="1.6" fill="${S}"/>`)+`<rect x="70" y="124" width="60" height="16" rx="3" fill="${S}" stroke="${edge}" stroke-width=".8"/>`;break;
+    case "bangle": g=`<path d="M48 120 A54 46 0 1 1 152 120" fill="none" stroke="${S}" stroke-width="9" stroke-linecap="round"/>`;break;
+    case "twist": g=`<ellipse cx="100" cy="100" rx="56" ry="48" fill="none" stroke="${S}" stroke-width="10"/><ellipse cx="100" cy="100" rx="56" ry="48" fill="none" stroke="${edge}" stroke-width="10" stroke-dasharray="2 6" opacity=".55"/>`;break;
+    case "cuff": g=`<path d="M46 124 A56 50 0 1 1 154 124" fill="none" stroke="${S}" stroke-width="22" stroke-linecap="round"/>`+
+      Array.from({length:14},(_,i)=>{const a=Math.PI*(1.12+i*0.055),x=100+Math.cos(a)*56,y=100+Math.sin(a)*50;return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.2" fill="#fff" opacity=".55"/>`}).join("");break;
+    case "knot": g=`<path d="M50 118 A52 46 0 0 1 84 62" fill="none" stroke="${S}" stroke-width="8" stroke-linecap="round"/><path d="M150 118 A52 46 0 0 0 116 62" fill="none" stroke="${S}" stroke-width="8" stroke-linecap="round"/><path d="M84 62 C92 44 108 44 116 62 C108 74 92 74 84 62Z" fill="none" stroke="${S}" stroke-width="7"/>`;break;
+    case "zircon": g=`<ellipse cx="100" cy="100" rx="56" ry="48" fill="none" stroke="${S}" stroke-width="6"/>`+
+      Array.from({length:7},(_,i)=>{const a=Math.PI*(.32+i*.06),x=100+Math.cos(a)*56,y=100+Math.sin(a)*48;return gem(x,y,4.5)}).join("");break;
+    case "pendant": case "letter": case "necklace":
+      g=`<path d="M38 30 Q100 175 162 30" fill="none" stroke="${S}" stroke-width="2" stroke-dasharray="3 2"/>`;
+      if(p.type==="pendant") g+=`<circle cx="100" cy="112" r="11" fill="${S}"/>`+gem(100,112,7);
+      if(p.type==="letter") g+=`<text x="100" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="34" font-weight="700" fill="${S}" stroke="${edge}" stroke-width=".6">A</text>`;
+      break;
+    case "hoops": g=`<circle cx="70" cy="110" r="26" fill="none" stroke="${S}" stroke-width="5"/><circle cx="130" cy="110" r="26" fill="none" stroke="${S}" stroke-width="5"/>`;break;
+    case "studs": g=`<circle cx="76" cy="105" r="13" fill="${S}"/>${gem(76,105,9)}<circle cx="124" cy="105" r="13" fill="${S}"/>${gem(124,105,9)}`;break;
+    case "pearl": g=[76,124].map(x=>`<circle cx="${x}" cy="105" r="16" fill="#f6f2ea" stroke="${edge}" stroke-width=".8"/><circle cx="${x-5}" cy="99" r="5" fill="#fff" opacity=".9"/>`).join("");break;
+    case "ring": g=`<ellipse cx="100" cy="110" rx="42" ry="44" fill="none" stroke="${S}" stroke-width="10"/>`;break;
+    case "solitaire": g=`<ellipse cx="100" cy="116" rx="40" ry="42" fill="none" stroke="${S}" stroke-width="6"/><path d="M90 76 L100 62 L110 76Z" fill="${S}"/>`+gem(100,62,12);break;
+    case "anklet": g=arc(18,(x,y)=>`<circle cx="${x}" cy="${y}" r="3.6" fill="${S}" stroke="${edge}" stroke-width=".5"/>`);break;
+    case "charmbase": g=`<path d="M38 70 A62 62 0 0 0 162 70" fill="none" stroke="${S}" stroke-width="5" stroke-linecap="round"/>`+
+      [[62,112,"h"],[100,131,"s"],[138,112,"m"]].map(([x,y,k])=>`<line x1="${x}" y1="${y-6}" x2="${x}" y2="${y+4}" stroke="${S}" stroke-width="2"/>`+(k==="h"?`<path d="M${x} ${y+26} C${x-14} ${y+16} ${x-12} ${y+5} ${x-5} ${y+5} C${x-2} ${y+5} ${x} ${y+8} ${x} ${y+8} C${x} ${y+8} ${x+2} ${y+5} ${x+5} ${y+5} C${x+12} ${y+5} ${x+14} ${y+16} ${x} ${y+26}Z" fill="${S}" stroke="${edge}" stroke-width=".6"/>`:k==="s"?`<circle cx="${x}" cy="${y+15}" r="10" fill="${S}" stroke="${edge}" stroke-width=".6"/>`:`<path d="M${x+6} ${y+5} A11 11 0 1 0 ${x+6} ${y+27} A8 8 0 1 1 ${x+6} ${y+5}Z" fill="${S}" stroke="${edge}" stroke-width=".6"/>`)).join("");break;
+  }
+  if(p.type&&p.type.startsWith("c-")){
+    const ring=`<circle cx="100" cy="58" r="9" fill="none" stroke="${S}" stroke-width="4"/><line x1="100" y1="67" x2="100" y2="76" stroke="${S}" stroke-width="3"/>`;
+    const star=(cx,cy,R,r)=>{let d="";for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,rr=i%2?r:R;d+=(i?"L":"M")+(cx+Math.cos(a)*rr).toFixed(1)+" "+(cy+Math.sin(a)*rr).toFixed(1)}return d+"Z"};
+    const shapes={
+      "c-heart":`<path d="M100 160 C58 132 62 90 84 88 C93 88 100 98 100 98 C100 98 107 88 116 88 C138 90 142 132 100 160Z" fill="${S}" stroke="${edge}" stroke-width=".8"/>`,
+      "c-star":`<path d="${star(100,118,42,18)}" fill="${S}" stroke="${edge}" stroke-width=".8"/>`,
+      "c-moon":`<path d="M118 80 A40 40 0 1 0 118 156 A30 30 0 1 1 118 80Z" fill="${S}" stroke="${edge}" stroke-width=".8"/>`+gem(122,118,6),
+      "c-clover":[[0,-20],[20,0],[0,20],[-20,0]].map(([dx,dy])=>`<circle cx="${100+dx}" cy="${118+dy}" r="18" fill="${S}" stroke="${edge}" stroke-width=".8"/>`).join("")+`<circle cx="100" cy="118" r="5" fill="${S}"/>`,
+      "c-letter":`<circle cx="100" cy="118" r="38" fill="${S}" stroke="${edge}" stroke-width=".8"/><circle cx="100" cy="118" r="32" fill="none" stroke="${edge}" stroke-width=".5"/><text x="100" y="131" text-anchor="middle" font-family="Georgia,serif" font-size="36" fill="rgba(40,45,55,.55)">M</text>`
+    };
+    g=ring+shapes[p.type];
+  }
+  return `<svg viewBox="0 0 200 250" role="img" aria-label="${p.name}">${defs}<g transform="translate(0,30)"><ellipse cx="100" cy="172" rx="58" ry="5" fill="rgba(0,0,0,.08)"/>${g}</g></svg>`;
+}
+
+/* ===== Catálogo ===== */
+const CATS = ["Todo","Manillas","Brazaletes","Charms","Collares","Aretes","Anillos","Tobilleras"];
+let state = {cat:"Todo", sort:"dest"};
+function renderChips(){$("#catChips").innerHTML=CATS.map(c=>`<button class="chip" aria-pressed="${state.cat===c}" data-cat="${c}">${c}</button>`).join("")}
+function renderGrid(){
+  let list=PRODUCTS.filter(p=>state.cat==="Todo"||p.cat===state.cat);
+  if(state.sort==="asc")list=[...list].sort((a,b)=>a.price-b.price);
+  if(state.sort==="desc")list=[...list].sort((a,b)=>b.price-a.price);
+  $("#resultCount").textContent=(list.length===1?"1 pieza":list.length+" piezas")+" en plata 925";
+  $("#grid").innerHTML=list.length?list.map(p=>`
+    <article class="card">
+      <button class="pic" data-open="${p.id}" aria-label="Ver ${p.name}">${art(p)}${p.badge?`<span class="badge">${p.badge}</span>`:""}<span class="quick">Ver detalles</span></button>
+      <div>
+        <div class="row"><h3>${p.name}</h3><span class="price">${cop(p.price)}</span></div>
+        <div class="meta">${p.mat||"Plata 925"} · ${p.weight}</div>
+      </div>
+    </article>`).join(""):`<div class="empty">No hay piezas en esta categoría por ahora.</div>`;
+}
+$("#catChips").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;state.cat=b.dataset.cat;renderChips();renderGrid()});
+$("#sort").addEventListener("change",e=>{state.sort=e.target.value;renderGrid()});
+$("#grid").addEventListener("click",e=>{const b=e.target.closest("[data-open]");if(b)openProduct(b.dataset.open)});
+
+/* ===== Detalle ===== */
+let current=null, chosenSize=null;
+function openModal(id){$(id).classList.add("open");$("#scrim").classList.add("open")}
+function closeModals(){document.querySelectorAll(".modal.open").forEach(m=>m.classList.remove("open"));if(!$("#drawer").classList.contains("open"))$("#scrim").classList.remove("open")}
+function openProduct(id){
+  current=PRODUCTS.find(p=>p.id===id);chosenSize=null;
+  const ph=photosOf(current);
+  $("#pmPic").innerHTML=ph.length>1
+    ? `<div style="position:relative;height:100%">${photoImg(ph[0],current.name)}<div class="thumbs">${ph.map((s,i)=>`<button type="button" data-ph="${s}" aria-label="Foto ${i+1}" aria-pressed="${i===0}">${photoImg(s,"")}</button>`).join("")}</div></div>`
+    : art(current);
+  $("#pmCat").textContent=current.cat+" · "+(current.mat||"Plata 925");
+  $("#pmTitle").textContent=current.name;
+  $("#pmPrice").textContent=cop(current.price);
+  $("#pmDesc").textContent=current.desc;
+  $("#pmSpecs").innerHTML=`<dt>Referencia</dt><dd>${current.id}</dd><dt>Material</dt><dd>${current.mat||"Plata de ley 925"}</dd><dt>Peso aprox.</dt><dd>${current.weight}</dd><dt>Despacho</dt><dd>24 horas hábiles</dd>`;
+  const sizes=current.options||SIZES[current.cat];
+  $("#pmSizeWrap").hidden=!sizes;
+  if(sizes){$("#pmSizeLabel").textContent=current.optLabel||(current.cat==="Anillos"?"Talla":"Largo");
+    $("#pmSizes").innerHTML=sizes.map(s=>`<button type="button" data-size="${s}" aria-pressed="false">${s}</button>`).join("")}
+  $("#pmErr").textContent="";
+  openModal("#productModal");
+}
+$("#pmPic").addEventListener("click",e=>{const b=e.target.closest("[data-ph]");if(!b)return;const main=$("#pmPic").querySelector(":scope > div > img");main.src=b.dataset.ph;$("#pmPic").querySelectorAll("[data-ph]").forEach(x=>x.setAttribute("aria-pressed",x===b))});
+$("#pmSizes").addEventListener("click",e=>{const b=e.target.closest("[data-size]");if(!b)return;chosenSize=b.dataset.size;
+  $("#pmSizes").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));$("#pmErr").textContent=""});
+$("#pmAdd").addEventListener("click",()=>{
+  if((current.options||SIZES[current.cat])&&!chosenSize){$("#pmErr").textContent=current.optLabel?"Elige una letra para continuar.":"Elige una medida para continuar.";return}
+  addToCart(current.id,chosenSize||"Única");closeModals();toast(current.name+" agregado al carrito");
+});
+
+/* ===== Carrito ===== */
+let cart=[];
+try{cart=JSON.parse(localStorage.getItem("verdemar925-cart")||"[]").filter(i=>PRODUCTS.some(p=>p.id===i.id))}catch(e){cart=[]}
+function save(){try{localStorage.setItem("verdemar925-cart",JSON.stringify(cart))}catch(e){}}
+function addToCart(id,size){const f=cart.find(i=>i.id===id&&i.size===size);f?f.qty++:cart.push({id,size,qty:1});save();renderCart()}
+function totals(){const sub=cart.reduce((a,i)=>a+PRODUCTS.find(p=>p.id===i.id).price*i.qty,0);const ship=sub===0||sub>=ENVIO_GRATIS_DESDE?0:ENVIO;return{sub,ship,total:sub+ship}}
+function renderCart(){
+  $("#cartCount").textContent=cart.reduce((a,i)=>a+i.qty,0);
+  $("#items").innerHTML=cart.length?cart.map((i,k)=>{const p=PRODUCTS.find(x=>x.id===i.id);return `
+    <div class="line">
+      <div class="thumb">${art(p)}</div>
+      <div><div class="name">${p.name}</div><div class="opt">${p.optLabel?p.optLabel+" "+i.size:(p.mat||"Plata 925")+" · "+i.size}</div>
+        <div class="qty"><button data-dec="${k}" aria-label="Quitar uno">−</button><span>${i.qty}</span><button data-inc="${k}" aria-label="Agregar uno">+</button><button class="remove" data-rm="${k}">Eliminar</button></div></div>
+      <div class="price">${cop(p.price*i.qty)}</div>
+    </div>`}).join(""):`<p class="hint" style="padding:28px 0;font-size:14px">Tu carrito está vacío. Explora la colección y agrega tu primera pieza.</p>`;
+  const t=totals();
+  $("#subtotal").textContent=cop(t.sub);
+  $("#shipping").textContent=t.sub===0?"—":t.ship===0?"Gratis":cop(t.ship);
+  $("#total").textContent=cop(t.total);
+  $("#progBar").style.width=Math.min(100,t.sub/ENVIO_GRATIS_DESDE*100)+"%";
+  $("#shipHint").textContent=t.sub>=ENVIO_GRATIS_DESDE?"Tu envío es gratis.":`Te faltan ${cop(ENVIO_GRATIS_DESDE-t.sub)} para el envío gratis.`;
+  $("#checkoutBtn").disabled=!cart.length;$("#checkoutBtn").style.opacity=cart.length?1:.5;
+}
+$("#items").addEventListener("click",e=>{const b=e.target;let k;
+  if((k=b.dataset.inc)!==undefined)cart[k].qty++;
+  else if((k=b.dataset.dec)!==undefined){cart[k].qty--;if(cart[k].qty<1)cart.splice(k,1)}
+  else if((k=b.dataset.rm)!==undefined)cart.splice(k,1);else return;
+  save();renderCart()});
+function openCart(){$("#drawer").classList.add("open");$("#drawer").setAttribute("aria-hidden","false");$("#scrim").classList.add("open")}
+function closeCart(){$("#drawer").classList.remove("open");$("#drawer").setAttribute("aria-hidden","true");if(!document.querySelector(".modal.open"))$("#scrim").classList.remove("open")}
+$("#openCart").onclick=openCart;$("#closeCart").onclick=closeCart;
+$("#scrim").onclick=()=>{closeModals();closeCart()};
+document.querySelectorAll("[data-close]").forEach(b=>b.onclick=closeModals);
+document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModals()}));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeModals();closeCart()}});
+
+/* ===== Pedido por WhatsApp ===== */
+$("#checkoutBtn").onclick=()=>{if(!cart.length)return;closeCart();$("#coResult").hidden=true;$("#coErr").textContent="";openModal("#checkoutModal")};
+$("#coForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const v=id=>$(id).value.trim();
+  if(!v("#coName")||!v("#coPhone")||!v("#coCity")||!v("#coAddr")){$("#coErr").textContent="Completa nombre, celular, ciudad y dirección.";return}
+  if(v("#coPhone").replace(/\D/g,"").length<10){$("#coErr").textContent="El celular debe tener 10 dígitos.";return}
+  if($("#coPay").value.startsWith("Contraentrega")&&!/bogot/i.test(v("#coCity"))){$("#coErr").textContent="El pago contraentrega solo está disponible en Bogotá. Elige otro medio de pago.";return}
+  $("#coErr").textContent="";
+  const t=totals();
+  const lines=cart.map(i=>{const p=PRODUCTS.find(x=>x.id===i.id);return `• ${i.qty} x ${p.name} (${p.id}, ${p.optLabel?p.optLabel+" "+i.size:i.size}) — ${cop(p.price*i.qty)}`}).join("\n");
+  const msg=`Hola Verdemar, quiero hacer este pedido:\n\n${lines}\n\nSubtotal: ${cop(t.sub)}\nEnvío: ${t.ship?cop(t.ship):"Gratis"}\nTotal: ${cop(t.total)}\n\nNombre: ${v("#coName")}\nCelular: ${v("#coPhone")}\nCiudad: ${v("#coCity")}\nDirección: ${v("#coAddr")}\nPago: ${$("#coPay").value}`+(v("#coNote")?`\nNota: ${v("#coNote")}`:"");
+  $("#orderText").textContent=msg;
+  $("#waLink").href=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  $("#coResult").hidden=false;
+});
+$("#copyOrder").onclick=async()=>{try{await navigator.clipboard.writeText($("#orderText").textContent);toast("Mensaje copiado")}catch(e){toast("No se pudo copiar; selecciona el texto manualmente")}};
+
+/* ===== Hero: cadena de plata con brillo ===== */
+(function hero(){
+  const c=$("#heroCanvas"),ctx=c.getContext("2d");
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let R;
+  function size(){const r=c.getBoundingClientRect(),d=devicePixelRatio||1;c.width=r.width*d;c.height=r.height*d;ctx.setTransform(d,0,0,d,0,0);R=r}
+  size();addEventListener("resize",()=>{size();draw(0)});
+  function draw(t){
+    const w=R.width,h=R.height,cx=w/2,top=h*.08,s=Math.min(w,h);
+    ctx.clearRect(0,0,w,h);
+    const n=34, sweep=(t*.00025)%1.6-.3;
+    for(let i=0;i<n;i++){
+      const u=i/(n-1), x=w*.12+u*w*.76, y=top+Math.sin(u*Math.PI)*h*.55;
+      const ang=Math.atan2(Math.cos(u*Math.PI)*h*.55*Math.PI,w*.76);
+      const shine=Math.max(0,1-Math.abs(u-sweep)*5);
+      ctx.save();ctx.translate(x,y);ctx.rotate(ang+(i%2?Math.PI/2:0));
+      const g=ctx.createLinearGradient(-10,-10,10,10);
+      g.addColorStop(0,"#f6f7f9");g.addColorStop(.5,`rgb(${150+shine*90},${156+shine*86},${166+shine*80})`);g.addColorStop(1,"#7b818b");
+      ctx.strokeStyle=g;ctx.lineWidth=s*.012;
+      ctx.beginPath();ctx.ellipse(0,0,s*.022,s*.014,0,0,Math.PI*2);ctx.stroke();ctx.restore();
+    }
+    // dije placa
+    const px=cx,py=top+h*.55+s*.09;
+    ctx.save();ctx.translate(px,py);
+    const g2=ctx.createLinearGradient(-s*.12,-s*.05,s*.12,s*.05);
+    g2.addColorStop(0,"#f3f4f6");g2.addColorStop(Math.min(.95,Math.max(.05,sweep)),"#ffffff");g2.addColorStop(1,"#8d939c");
+    ctx.fillStyle=g2;ctx.strokeStyle="rgba(40,45,55,.3)";ctx.lineWidth=1;
+    const bw=s*.24,bh=s*.07;ctx.beginPath();ctx.roundRect(-bw/2,-bh/2,bw,bh,6);ctx.fill();ctx.stroke();
+    ctx.fillStyle="rgba(40,45,55,.55)";ctx.font=`${s*.03}px Figtree, sans-serif`;ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("9 2 5",0,1);
+    ctx.restore();
+    ctx.beginPath();ctx.moveTo(px,top+h*.55+s*.012);ctx.lineTo(px,py-bh/2);ctx.strokeStyle="#9aa0a9";ctx.lineWidth=2;ctx.stroke();
+  }
+  if(reduce)draw(0);else(function loop(t){draw(t);requestAnimationFrame(loop)})(0);
+})();
+
+renderChips();renderGrid();renderCart();
+</script>
+</body>
+</html>
